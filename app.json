@@ -1,0 +1,7 @@
+{
+  "name": "FB Custom Audience Playground",
+  "description": "A Small POC for working with FB Custom Audience marketing api",
+  "repository": "https://github.com/parasquid/fb_custom_audience",
+  "logo": "https://en.facebookbrand.com/wp-content/themes/fb-branding/prj-fb-branding/assets/images/thumb-drawn.svg",
+  "keywords": ["fb", "custom audience", "ruby", "rails"]
+}
