@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  namespace :data_source do
+    namespace :ad_accounts do
+      get 'custom_audiences', to: "custom_audiences#index"
+    end
+  end
+
   get "/auth/facebook", as: "facebook_login"
 	get '/auth/:provider/callback', to: 'sessions#create'
 
