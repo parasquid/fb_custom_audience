@@ -1,2 +1,20 @@
-<h1>DataSource::AdAccounts::CustomAudiences#index</h1>
-<p>Find me in app/views/data_source/ad_accounts/custom_audiences/index.html.erb</p>
+<table>
+  <thead>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Approximate Count</th>
+    <th>Operation Status</th>
+    <th>Delivery Status</th>
+  </thead>
+  <tbody>
+    <% @results.each do |result| %>
+      <tr>
+        <td><%= result[:name] %></td>
+        <td><%= result[:description] %></td>
+        <td><%= result[:approximate_count] %></td>
+        <td><%= result[:operation_status] %></td>
+        <td><%= result[:delivery_status] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
