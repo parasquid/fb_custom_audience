@@ -35,6 +35,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# background worker
+gem 'sidekiq'
+
 group :development, :test do
   gem "pry"
   gem "dotenv-rails"

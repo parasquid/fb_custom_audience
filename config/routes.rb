@@ -10,5 +10,12 @@ Rails.application.routes.draw do
 
   delete "sessions/destroy", as: :logout
 
+  namespace :api do
+    post 'maropost_update', to: 'maropost#update'
+  end
+
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   root to: "home#index"
 end
