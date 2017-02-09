@@ -6,6 +6,7 @@
       <th>Approximate Count</th>
       <th>Operation Status</th>
       <th>Delivery Status</th>
+      <th>Upload CSV</th>
     </thead>
     <tbody>
       <% @results.each do |result| %>
@@ -15,6 +16,7 @@
           <td><%= result[:approximate_count] %></td>
           <td><%= result[:operation_status] %></td>
           <td><%= result[:delivery_status] %></td>
+          <td><%= button_to "Upload", "#", class: "btn btn-default" %></td>
         </tr>
       <% end %>
     </tbody>
