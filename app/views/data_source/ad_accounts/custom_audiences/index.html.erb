@@ -1,20 +1,22 @@
-<table>
-  <thead>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Approximate Count</th>
-    <th>Operation Status</th>
-    <th>Delivery Status</th>
-  </thead>
-  <tbody>
-    <% @results.each do |result| %>
-      <tr>
-        <td><%= result[:name] %></td>
-        <td><%= result[:description] %></td>
-        <td><%= result[:approximate_count] %></td>
-        <td><%= result[:operation_status] %></td>
-        <td><%= result[:delivery_status] %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <table class="table">
+    <thead>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Approximate Count</th>
+      <th>Operation Status</th>
+      <th>Delivery Status</th>
+    </thead>
+    <tbody>
+      <% @results.each do |result| %>
+        <tr>
+          <td><%= result[:name] %></td>
+          <td><%= result[:description] %></td>
+          <td><%= result[:approximate_count] %></td>
+          <td><%= result[:operation_status] %></td>
+          <td><%= result[:delivery_status] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
