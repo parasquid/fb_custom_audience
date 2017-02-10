@@ -1,7 +1,7 @@
 class ProcessMaropostJourneyJob < ApplicationJob
   def perform(params)
     workflow_id = params["workflow_id"]
-    custom_audience_id = Workflow.where(mp_id: workflow_id).custom_audience_id
+    custom_audience_id = Workflow.where(mp_id: workflow_id).first.custom_audience_id
     email = aprams["contact"]["email"]
     payload = {
       schema: "EMAIL_SHA256",
