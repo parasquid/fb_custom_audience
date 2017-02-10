@@ -1,6 +1,7 @@
 <div class="container">
   <table class="table">
     <thead>
+      <th>Ad Account ID</th>
       <th>Name</th>
       <th>Description</th>
       <th>Approximate Count</th>
@@ -12,6 +13,7 @@
     <tbody>
       <% @results.each do |result| %>
         <tr>
+          <td><%= result[:ad_act_id] %></td>
           <td><%= result[:name] %></td>
           <td><%= result[:description] %></td>
           <td><%= result[:approximate_count] %></td>
