@@ -2,9 +2,15 @@ class DataSource::AdAccounts::CustomAudiencesController < ApplicationController
   layout false
 
   def index
-    ad_accounts = graph.get_connections("me", "adaccounts")
+    ad_accounts = []
+    ad_accounts.push graph.get_connections("me", "adaccounts")
+    businesses = graph.get_connections("me", "businesses")
+    businesses.each do |business|
+      ad_accounts.push graph.get_connections(business["id"], "adaccounts")
+    end
+
     @results = []
-    ad_accounts.each do |ad_act|
+    ad_accounts.flatten.uniq.each do |ad_act|
       custom_audiences = graph.get_connections(ad_act["id"], "customaudiences",
         fields: [:name, :description, :approximate_count, :operation_status, :delivery_status]
       )
