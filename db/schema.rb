@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170208093857) do
+ActiveRecord::Schema.define(version: 20170210045009) do
 
   create_table "authentications", force: :cascade do |t|
     t.integer  "user_id"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20170208093857) do
     t.index ["provider"], name: "index_authentications_on_provider"
     t.index ["uid"], name: "index_authentications_on_uid"
     t.index ["user_id"], name: "index_authentications_on_user_id"
+  end
+
+  create_table "custom_audience_to_workflow_luts", force: :cascade do |t|
+    t.string   "custom_audience_id"
+    t.string   "workflow_ids"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "users", force: :cascade do |t|

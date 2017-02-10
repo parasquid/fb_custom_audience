@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :data_source do
     namespace :ad_accounts do
       get 'custom_audiences', to: "custom_audiences#index"
+      post "custom_audiences/workflows"
       namespace :custom_audiences do
         post "uploads", to: "uploads#create"
       end

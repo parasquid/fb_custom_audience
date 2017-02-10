@@ -6,7 +6,7 @@
       <th>Approximate Count</th>
       <th>Operation Status</th>
       <th>Delivery Status</th>
-      <th>Upload CSV</th>
+      <th>Workflows</th>
     </thead>
     <tbody>
       <% @results.each do |result| %>
@@ -17,8 +17,9 @@
           <td><%= result[:operation_status] %></td>
           <td><%= result[:delivery_status] %></td>
           <td>
-            <%= link_to "Upload", "#", class: "btn btn-primary",
+            <%= link_to "Edit Workflow IDs", "#", class: "btn btn-primary",
               "data-id": "#{result[:id]}",
+              "data-workflow-ids": "#{result[:workflow_ids]}",
               "data-toggle": "modal",
               "data-target": "#upload-modal"
             %>
@@ -32,21 +33,24 @@
 <div class="modal fade" id="upload-modal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Upload CSV</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= form_for :upload, method: :post, url: data_source_ad_accounts_custom_audiences_uploads_path do %>
-          hello
-        <% end %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      <%= form_for :workflow_ids,
+        method: :post,
+        url: data_source_ad_accounts_custom_audiences_workflows_path do
+      %>
+        <div class="modal-header">
+          <h5 class="modal-title"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            hello
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      <% end %>
     </div>
   </div>
   <script>
@@ -56,7 +60,7 @@
       // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
       // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
       var modal = $(this)
-      modal.find('.modal-title').text('New message to ' + id)
+      modal.find('.modal-title').text('Add Workflow IDs to custom audience ' + id)
       modal.find('.modal-body input').val(id)
     })
   </script>
