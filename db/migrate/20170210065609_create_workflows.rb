@@ -6,5 +6,6 @@ class CreateWorkflows < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+    add_index :workflows, :mp_id
   end
 end

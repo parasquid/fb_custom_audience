@@ -5,5 +5,6 @@ class CreateCustomAudiences < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+    add_index :custom_audiences, :fb_id
   end
 end
