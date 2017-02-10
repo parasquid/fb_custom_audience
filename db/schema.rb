@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170210065319) do
+ActiveRecord::Schema.define(version: 20170210072800) do
 
   create_table "authentications", force: :cascade do |t|
     t.integer  "user_id"
@@ -24,19 +24,13 @@ ActiveRecord::Schema.define(version: 20170210065319) do
     t.index ["user_id"], name: "index_authentications_on_user_id"
   end
 
-  create_table "custom_audience_to_workflow_luts", force: :cascade do |t|
-    t.string   "custom_audience_id"
-    t.string   "workflow_ids"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.index ["custom_audience_id"], name: "index_custom_audience_to_workflow_luts_on_custom_audience_id"
-  end
-
   create_table "custom_audiences", force: :cascade do |t|
     t.string   "fb_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
     t.index ["fb_id"], name: "index_custom_audiences_on_fb_id"
+    t.index ["user_id"], name: "index_custom_audiences_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,6 +44,7 @@ ActiveRecord::Schema.define(version: 20170210065319) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.index ["custom_audience_id"], name: "index_workflows_on_custom_audience_id"
+    t.index ["mp_id"], name: "index_workflows_on_mp_id"
   end
 
 end

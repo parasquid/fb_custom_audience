@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
       authentication = Authentication.where(provider: provider, uid: uid).first
       if authentication
-        user = authentication.user
+        @current_user = user = authentication.user
         session[:user_id] = user.id
       else
         user = User.create

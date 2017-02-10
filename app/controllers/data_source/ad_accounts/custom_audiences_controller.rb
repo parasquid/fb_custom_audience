@@ -7,7 +7,7 @@ class DataSource::AdAccounts::CustomAudiencesController < ApplicationController
     )
     @results = custom_audiences.map { |data|
       id = data["id"]
-      lut = CustomAudience.where(fb_id: id).first_or_create
+      lut = current_user.custom_audiences.where(fb_id: id).first_or_create
       workflow_ids = lut&.workflow_ids || NullObject.get
       {
         id: id,
@@ -25,7 +25,7 @@ class DataSource::AdAccounts::CustomAudiencesController < ApplicationController
     parameters = params[:add_workflow_ids_to_custom_audience]
     workflow_ids = parameters[:workflow_ids].split(",").map(&:strip)
     custom_audience_id = parameters[:custom_audience_id]
-    model = CustomAudience.where(fb_id: custom_audience_id).first
+    model = current_user.custom_audiences.where(fb_id: custom_audience_id).first
     model.workflows = workflow_ids.map { |id| model.workflows.where(mp_id: id).first_or_create }
     model.save!
     redirect_back fallback_location: root_url, notice: "Workflow IDs saved!"
