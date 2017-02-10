@@ -6,5 +6,6 @@ class CreateCustomAudienceToWorkflowLuts < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+    add_index :custom_audience_to_workflow_luts, :custom_audience_id
   end
 end

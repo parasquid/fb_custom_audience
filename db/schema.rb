@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20170210045009) do
     t.string   "workflow_ids"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.index ["custom_audience_id"], name: "index_custom_audience_to_workflow_luts_on_custom_audience_id"
   end
 
   create_table "users", force: :cascade do |t|
