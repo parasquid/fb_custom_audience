@@ -6,7 +6,11 @@ class DataSource::AdAccounts::CustomAudiencesController < ApplicationController
     ad_accounts.push graph.get_connections("me", "adaccounts")
     businesses = graph.get_connections("me", "businesses")
     businesses.each do |business|
-      ad_accounts.push graph.get_connections(business["id"], "adaccounts")
+      begin
+        ad_accounts.push graph.get_connections(business["id"], "adaccounts")
+      rescue StandardError => ex
+        LOGGER.info ex
+      end
     end
 
     @results = []
