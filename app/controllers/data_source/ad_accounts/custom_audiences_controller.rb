@@ -9,7 +9,7 @@ class DataSource::AdAccounts::CustomAudiencesController < ApplicationController
       begin
         ad_accounts.push graph.get_connections(business["id"], "adaccounts")
       rescue StandardError => ex
-        LOGGER.info ex
+        Rails.logger.info ex
       end
     end
 
@@ -35,7 +35,7 @@ class DataSource::AdAccounts::CustomAudiencesController < ApplicationController
           }
         }
       rescue StandardError => ex
-        LOGGER.info ex
+        Rails.logger.info ex
       end
     end
   end
