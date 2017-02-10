@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  custom_audience_id: MyString
-  workflow_ids: MyString
-
-two:
-  custom_audience_id: MyString
-  workflow_ids: MyString
