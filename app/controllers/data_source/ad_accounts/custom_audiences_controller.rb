@@ -22,7 +22,13 @@ class DataSource::AdAccounts::CustomAudiencesController < ApplicationController
   end
 
   def workflows
-    byebug
+    parameters = params[:add_workflow_ids_to_custom_audience]
+    workflow_ids = parameters[:workflow_ids].split(",").map(&:strip)
+    custom_audience_id = parameters[:custom_audience_id]
+    model = CustomAudienceToWorkflowLut.where(custom_audience_id).first
+    model.workflow_ids = workflow_ids
+    model.save!
+    redirect_back fallback_location: root_url, notice: "Workflow IDs saved!"
   end
 
   private
