@@ -2,14 +2,12 @@ class DataSource::AdAccounts::CustomAudiencesController < ApplicationController
   layout false
 
   def index
-    token = current_user.token
-    graph = Koala::Facebook::API.new(token)
     custom_audiences = graph.get_connections("act_226287978", "customaudiences",
       fields: [:name, :description, :approximate_count, :operation_status, :delivery_status]
     )
-    # binding.pry
     @results = custom_audiences.map { |data|
       {
+        id: data["id"],
         name: data["name"],
         description: data["description"],
         approximate_count: data["approximate_count"],
@@ -17,5 +15,16 @@ class DataSource::AdAccounts::CustomAudiencesController < ApplicationController
         delivery_status: data["delivery_status"]["description"]
       }
     }
+  end
+
+  def upload
+
+  end
+
+  private
+
+  def graph
+    token = current_user.token
+    graph = Koala::Facebook::API.new(token)
   end
 end
