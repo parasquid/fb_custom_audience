@@ -15,24 +15,28 @@ class DataSource::AdAccounts::CustomAudiencesController < ApplicationController
 
     @results = []
     ad_accounts.flatten.uniq.each do |ad_act|
-      custom_audiences = graph.get_connections(ad_act["id"], "customaudiences",
-        fields: [:name, :description, :approximate_count, :operation_status, :delivery_status]
-      )
-      @results += custom_audiences.map { |data|
-        id = data["id"]
-        lut = current_user.custom_audiences.where(fb_id: id).first_or_create
-        workflow_ids = lut&.workflow_ids || NullObject.get
-        {
-          id: id,
-          ad_act_id: ad_act["id"],
-          name: data["name"],
-          description: data["description"],
-          approximate_count: data["approximate_count"],
-          operation_status: data["operation_status"]["description"],
-          delivery_status: data["delivery_status"]["description"],
-          workflow_ids: workflow_ids
+      begin
+        custom_audiences = graph.get_connections(ad_act["id"], "customaudiences",
+          fields: [:name, :description, :approximate_count, :operation_status, :delivery_status]
+        )
+        @results += custom_audiences.map { |data|
+          id = data["id"]
+          lut = current_user.custom_audiences.where(fb_id: id).first_or_create
+          workflow_ids = lut&.workflow_ids || NullObject.get
+          {
+            id: id,
+            ad_act_id: ad_act["id"],
+            name: data["name"],
+            description: data["description"],
+            approximate_count: data["approximate_count"],
+            operation_status: data["operation_status"]["description"],
+            delivery_status: data["delivery_status"]["description"],
+            workflow_ids: workflow_ids
+          }
         }
-      }
+      rescue StandardError => ex
+        LOGGER.info ex
+      end
     end
   end
 
