@@ -15,7 +15,7 @@
         <td><%= act.dig("id") %></td>
         <td><%= act.dig("name") %></td>
         <td><%= act.dig("business", "name") %></td>
-        <td><%= number_to_currency act.dig("amount_spent") %></td>
+        <td><%= number_to_currency(act.dig("amount_spent").to_f / 100) %></td>
         <td><%= act.dig("age") %></td>
         <td><i class="fa fa-arrow-right"></i></td>
       </tr>
