@@ -1,4 +1,4 @@
-class DataSource::AdAccounts::CustomAudiencesController < ApplicationController
+class DataSource::AdAccounts::CustomAudiencesController < LoggedInController
   layout false
 
   def show

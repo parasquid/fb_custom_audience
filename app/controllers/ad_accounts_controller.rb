@@ -1,4 +1,4 @@
-class AdAccountsController < ApplicationController
+class AdAccountsController < LoggedInController
   def index
     @ad_accounts = []
     @ad_accounts.push get_ad_accounts_edge("me")
