@@ -1,0 +1,37 @@
+<div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_for :custom_audience,
+        method: :post,
+        class: "form-inline",
+        url: data_source_ad_accounts_custom_audiences_path do |f|
+      %>
+        <div class="modal-header">
+          <h5 class="modal-title"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+          <%= f.hidden_field :ad_act_id %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#create-modal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+    var adActId = button.data('ad-act-id'); // Extract info from data-* attributes
+    var modal = $(this);
+    modal.find('.modal-title').text('Create new Custom Audience');
+    modal.find('.modal-body #custom_audience_ad_act_id').val(adActId);
+  })
+</script>

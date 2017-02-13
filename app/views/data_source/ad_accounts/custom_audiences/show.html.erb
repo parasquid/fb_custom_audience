@@ -2,7 +2,6 @@
   <table class="table">
     <thead>
       <th>Name</th>
-      <th>Description</th>
       <th>Approximate Count</th>
       <th>Operation Status</th>
       <th>Delivery Status</th>
@@ -13,7 +12,6 @@
       <% @results.each do |result| %>
         <tr>
           <td><%= result[:name] %></td>
-          <td><%= result[:description] %></td>
           <td><%= number_with_delimiter result[:approximate_count] %></td>
           <td><%= result[:operation_status] %></td>
           <td><%= result[:delivery_status] %></td>
@@ -28,44 +26,19 @@
           </td>
         </tr>
       <% end %>
+      <tr>
+        <td colspan=7>
+          <%= link_to "New Custom Audience", "#", class: "btn btn-success",
+            "data-toggle": "modal",
+            "data-ad-act-id": "#{@results.first[:ad_act_id]}",
+            "data-target": "#create-modal"
+          %>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
 
-<div class="modal fade" id="upload-modal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <%= form_for :add_workflow_ids_to_custom_audience,
-        method: :post,
-        url: data_source_ad_accounts_custom_audiences_workflows_path do |f|
-      %>
-        <div class="modal-header">
-          <h5 class="modal-title"></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <%= f.text_field :workflow_ids %>
-          <%= f.hidden_field :custom_audience_id %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
-        </div>
-      <% end %>
-    </div>
-  </div>
-  <script>
-    $('#upload-modal').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget); // Button that triggered the modal
-      var id = button.data('id'); // Extract info from data-* attributes
-      var workflowIds = button.data("workflow-ids");
-      var modal = $(this);
-      modal.find('.modal-title').text('Add Workflow IDs to Custom Audience ' + id);
-      modal.find('.modal-body #add_workflow_ids_to_custom_audience_workflow_ids').val(workflowIds);
-      modal.find('.modal-body #add_workflow_ids_to_custom_audience_custom_audience_id').val(id);
+<%= render "upload_modal" %>
 
-    })
-  </script>
-</div>
+<%= render "create_modal" %>

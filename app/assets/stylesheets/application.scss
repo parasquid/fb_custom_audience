@@ -16,3 +16,13 @@
  */
 
 @import "bootstrap";
+
+.button_to {
+  input {
+    cursor: pointer;
+  }
+}
+
+tr[data-href]:hover {
+  cursor: pointer;
+}
