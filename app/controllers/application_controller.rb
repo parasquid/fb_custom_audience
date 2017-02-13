@@ -9,4 +9,13 @@ class ApplicationController < ActionController::Base
       @current_user ||= User.where(id: session[:user_id]).first
     end
   end
+
+  def graph
+    if current_user
+      token = current_user.token
+      graph = Koala::Facebook::API.new(token)
+    else
+      raise "User is not logged in"
+    end
+  end
 end

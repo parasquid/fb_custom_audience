@@ -2,6 +2,7 @@ ruby "2.3.3"
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
+  gem 'rails-assets-fontawesome', '~> 4.3.0'
 end
 
 source 'https://rubygems.org'

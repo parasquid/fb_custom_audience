@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+
+  resources :ad_accounts, only: [:index, :show]
+
   namespace :data_source do
     namespace :ad_accounts do
-      get 'custom_audiences', to: "custom_audiences#index"
+      get 'custom_audiences/:id', to: "custom_audiences#show", as: "custom_audience"
       post "custom_audiences/workflows"
       namespace :custom_audiences do
         post "uploads", to: "uploads#create"
