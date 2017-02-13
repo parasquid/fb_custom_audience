@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       end
 
       authentication.token = token
-      authentication.save
+      authentication.save!
     end
 
     redirect_to original_url, notice: "Signed in!"
