@@ -29,6 +29,18 @@ class DataSource::AdAccounts::CustomAudiencesController < LoggedInController
     end
   end
 
+  def create
+    begin
+      ad_act_id = params[:custom_audience][:ad_act_id]
+      ca_name = params[:custom_audience][:name]
+      graph.put_connections(ad_act_id, "customaudiences", name: ca_name, subtype: "CUSTOM")
+      redirect_back fallback_location: root_url, notice: "Custom Audience created!"
+    rescue StandardError => ex
+      Rails.logger.info ex
+      render text: ex
+    end
+  end
+
   def workflows
     parameters = params[:add_workflow_ids_to_custom_audience]
     workflow_ids = parameters[:workflow_ids].split(",").map(&:strip)
