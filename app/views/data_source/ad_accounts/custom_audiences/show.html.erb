@@ -14,7 +14,7 @@
         <tr>
           <td><%= result[:name] %></td>
           <td><%= result[:description] %></td>
-          <td><%= result[:approximate_count] %></td>
+          <td><%= number_with_delimiter result[:approximate_count] %></td>
           <td><%= result[:operation_status] %></td>
           <td><%= result[:delivery_status] %></td>
           <td><%= result[:workflow_ids].join(", ") %></td>

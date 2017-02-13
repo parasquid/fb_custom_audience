@@ -6,7 +6,6 @@
       <th>Name</th>
       <th>Business</th>
       <th>Amount Spent</th>
-      <th>Account Status</th>
       <th>Age</th>
       <th></th>
     </thead>
@@ -17,7 +16,6 @@
         <td><%= act.dig("name") %></td>
         <td><%= act.dig("business", "name") %></td>
         <td><%= number_to_currency act.dig("amount_spent") %></td>
-        <td><%= act.dig("account_status") %></td>
         <td><%= act.dig("age") %></td>
         <td><i class="fa fa-arrow-right"></i></td>
       </tr>

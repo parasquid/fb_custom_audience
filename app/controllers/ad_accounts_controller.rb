@@ -10,7 +10,9 @@ class AdAccountsController < ApplicationController
         Rails.logger.info ex
       end
     end
-    @ad_accounts.flatten!.uniq! { |act| act["id"] || "act_#{act['account_id']}" }
+    @ad_accounts.flatten!
+    @ad_accounts.each { |act| act["id"] ||= "act_#{act['account_id']}" }
+    @ad_accounts.uniq! { |act| act["id"] }
   end
 
   def show
